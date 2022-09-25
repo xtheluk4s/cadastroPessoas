@@ -1,12 +1,19 @@
 {% extends 'main/base.html' %}
 {% block content %}
+<form method="GET">
+    <input type="text" name="nome" placeholder="Buscar por nome"/>
+    <input type="submit" value="Buscar"/>
+</form>
+
 <a href="{% url 'pessoa.novo' %}">Novo</a>
+
 <table>
     <thead>
         <tr>
-            <th>Nome</th>
+            <th >Nome</th>
             <th>Data de nascimento</th>
             <th>Ativa</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -21,8 +28,13 @@
                     Não
                 {% endif %}
             </td>
+            <td>
+                <a href="{% url 'pessoa.editar' pessoa.pk %}">Editar</a>
+                <a href="{% url 'pessoa.remover' pessoa.pk %}">Remover</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
 {% endblock content %}
